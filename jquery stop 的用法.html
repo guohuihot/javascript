@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>stop的用法案例</title>
+		<style type="text/css">
+			#animater{
+                width: 150px;
+                background:activeborder;
+                border: 1px solid black;
+                /*为了移动，需设置此属性*/
+                position: relative;
+            }
+            input {padding: 10px;}
+		</style>
+		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#start").click(function(){
+				    $("#box").animate({height:300},"1000");
+				    $("#box").animate({width:300},"1000");
+				    $("#box").animate({height:100},"1000");
+				    $("#box").animate({width:100},"1000");
+				});
+				// 点击不同的button执行不同的操作
+        		$('#button1').click(function(){
+                    //默认参数是false，不管写一个false还是两个false还是没写false效果一样
+                    $('#box').stop();
+                });
+                $('#button2').click(function(){
+                    //第二个参数默认false
+                    $('#box').stop(true);
+                });
+                $('#button3').click(function(){
+                    $('#box').stop(false,true);
+                });
+                $('#button4').click(function(){
+                    $('#box').stop(true,true);
+                });
+			})
+		</script>
+	</head>
+	<body>
+        <div class="">
+$("#box").animate({height:300},"1000");<br/>
+$("#box").animate({width:300},"1000");<br/>
+$("#box").animate({height:100},"1000");<br/>
+$("#box").animate({width:100},"1000");<br/><br/>
+
+stop()等价于stop(false,false):停止被选元素当前的动画，但允许完成以后队列的所有动画<br/>
+stop(true)等价于stop(true,false): 停止被选元素的所有加入队列的动画<br/>
+stop(false,true):立即结束当前的动画到最终效果，然后完成以后队列的所以动画<br/>
+stop(true,true):停止被选元素的所有加入队列的动画，但允许完成当前动画<br/><br/>
+        </div>
+        <p><input type='button' value='开始测试' id='start'></p>
+		<div id="button">
+            <input type="button" id="button1" value="stop()"/>
+            <input type="button" id="button2" value="stop(true)"/>
+            <input type="button" id="button3" value="stop(false,true)"/>
+            <input type="button" id="button4" value="stop(true,true)"/> <br/><br/>
+        </div>
+        <div id="box" style="background:#98bf21;height:100px;width:100px;position:relative">stop运动参数测试</div>
+    </body>
+</html>
